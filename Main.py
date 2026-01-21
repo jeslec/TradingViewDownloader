@@ -16,10 +16,39 @@ except ImportError:
 
 #########################################################################################################################################################################################
 # Constants
-#########################################################################################################################################################################################
+######A###################################################################################################################################################################################
 
 SYMBOLS_TO_DOWNLOAD = [
-"FCEL"
+    "ASBP",
+    "AVR",
+    "BAOS",
+    "BOXL",
+    "BTTC",
+    "CDT",
+    "CRVS",
+    "DRCT",
+    "ERNA",
+    "FRSX",
+    "GLXG",
+    "GNLN",
+    "HUDI",
+    "IBG",
+    "ICON",
+    "IMTE",
+    "IVF",
+    "KUST",
+    "LGHL",
+    "LVRO",
+    "PAPL",
+    "POLA",
+    "RAPT",
+    "SDST",
+    "SEGG",
+    "SHPH",
+    "SLGB",
+    "SONM",
+    "TRON",
+    "TWG"
 ]
 
 SYMBOL_LOAD_TIME = 10
@@ -29,7 +58,9 @@ DELAY_DEFAULT = 0.5
 TYPEWRITE_INTERVAL = 0.05
 POST_RUN_SCRIPT = "../ChartFileRenamer/Main.py"
 
-POSITION_FIRST_STOCK_IN_SYMBOL_SEARCH = (924, 612)
+POSITION_SYMBOL_SEARCH_FILTER_STOCKS = (954, 538)
+POSITION_FIRST_STOCK_IN_SYMBOL_SEARCH = (928, 624)
+POSITION_SEARCH_BAR = (938, 486)
 
 POSITION_MAIN_MENU_BUTTON = (2180,57)
 POSITION_DOWNLOAD_CHART_DATA_MENU_OPTION = (2270, 266)
@@ -109,9 +140,19 @@ def ClickExportButton():
     pyautogui.click(*POSITION_EXPORT_BUTTON)
     time.sleep(DELAY_DEFAULT)
 
+def ClickStocksFilter():
+    pyautogui.click(*POSITION_SYMBOL_SEARCH_FILTER_STOCKS)
+    time.sleep(DELAY_DEFAULT)
+
+def ClickSearchBar():
+    pyautogui.click(*POSITION_SEARCH_BAR)
+    time.sleep(DELAY_DEFAULT)
+
 def OpenSymbolSearchWindow(windowLoadWaitTime=SYMBOL_SEARCH_WINDOW_LOAD_WAIT_TIME):
     pyautogui.typewrite(SYMBOL_SEARCH_DUMMY_ENTRY, interval=TYPEWRITE_INTERVAL)
     time.sleep(windowLoadWaitTime)
+    ClickStocksFilter()
+    ClickSearchBar()
     pyautogui.press('backspace')
 
 def TypeSymbol(symbol: str):
